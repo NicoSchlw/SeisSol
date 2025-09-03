@@ -465,6 +465,7 @@ SEISSOL_HOSTDEVICE inline void
                            real ruptureTime[misc::NumPaddedPoints],
                            const real slipRateMagnitude[misc::NumPaddedPoints],
                            real fullUpdateTime,
+			   real ruptureFrontThreshold, 
                            unsigned startIndex = 0) {
 
   using Range = typename NumPoints<Type>::Range;
@@ -474,8 +475,8 @@ SEISSOL_HOSTDEVICE inline void
 #endif
   for (auto index = Range::Start; index < Range::End; index += Range::Step) {
     auto pointIndex{startIndex + index};
-    constexpr real RuptureFrontThreshold = 0.001;
-    if (ruptureTimePending[pointIndex] && slipRateMagnitude[pointIndex] > RuptureFrontThreshold) {
+    //constexpr real RuptureFrontThreshold = 0.001;
+    if (ruptureTimePending[pointIndex] && slipRateMagnitude[pointIndex] > ruptureFrontThreshold) {
       ruptureTime[pointIndex] = fullUpdateTime;
       ruptureTimePending[pointIndex] = false;
     }

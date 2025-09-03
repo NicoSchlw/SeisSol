@@ -127,6 +127,7 @@ class BaseFrictionSolver : public FrictionSolverDetails {
                                                  ctx.data->ruptureTime[ctx.ltsFace],
                                                  ctx.data->slipRateMagnitude[ctx.ltsFace],
                                                  ctx.args->fullUpdateTime,
+						 ctx.data->drParameters.ruptureFrontThreshold,
                                                  ctx.pointIndex);
 
     Derived::saveDynamicStressOutput(ctx);
